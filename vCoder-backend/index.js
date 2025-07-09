@@ -3,6 +3,7 @@ import { main } from "./utils/main.js";
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 //  GET route for generating website components
 app.get("/generate", async (req, res) => {
