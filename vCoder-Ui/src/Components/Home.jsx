@@ -11,7 +11,7 @@ function Home() {
       {/* Landing Section */}
       <div className="h-auto flex items-center justify-center bg-center bg-cover pt-[7vh]">
         <TextPressure
-          text="Welcome to v-Code!"
+          text="Vibe-coding only!"
           flex={true}
           alpha={false}
           stroke={false}
