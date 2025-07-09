@@ -1,5 +1,6 @@
 import express from "express";
 import { main } from "./utils/main.js";
+import cors from 'cors'
 
 const app = express();
 app.use(express.json());

@@ -7,14 +7,13 @@ export default function SiteGenerator() {
   const [description, setDescription] = useState("");
 
 const apiUrl = import.meta.env.VITE_API_URL;
-console.log("API URL:", apiUrl);
 
   const generateSite = async () => {
     setLoading(true);
     setComponents(null);
 
     try {
-      const res = await fetch(`${apiUrl}/generate?description=${encodeURIComponent(description)}`);
+      const res = await fetch(`${apiUrl}/generate?description=${description}`);
       const data = await res.json();
 
       if (data.success) {
