@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "./Header";
 
 export default function SiteGenerator() {
   const [loading, setLoading] = useState(false);
@@ -72,79 +73,99 @@ export default function SiteGenerator() {
 </html>`;
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">vCode</h1>
+    <div
+      className="min-h-screen mb-4"
+      style={{
+        backgroundImage: "url('/image.png')",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
 
-      {/* Input Section */}
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Describe your website..."
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="w-full border rounded p-2"
-        />
-      </div>
-
-      {/* Generate Button */}
-      <button
-        onClick={generateSite}
-        disabled={loading || !description}
-        className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50 hover:bg-blue-700 transition-colors"
+      <div
+        className="max-w-4xl mx-auto p-6 rounded-xl border backdrop-blur-md shadow-2xl"
+        style={{
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
+          borderColor: "rgba(255, 255, 255, 0.3)",
+        }}
       >
-        {loading ? "Generating..." : "Generate Website"}
-      </button>
+        {/* Input Section */}
+        <h1 className="text-3xl font-bold text-center mb-6 text-black">Generate Your Website</h1>
 
-      {/* Results Section */}
-      {components && (
-        <div className="mt-6">
-          {/* Tab Navigation */}
-          <div className="flex gap-2 mb-4">
-            <button
-              onClick={() => setTab("preview")}
-              className={`px-4 py-2 rounded transition-colors ${
-                tab === "preview" 
-                  ? "bg-blue-600 text-white" 
-                  : "bg-gray-200 hover:bg-gray-300"
-              }`}
-            >
-              Preview
-            </button>
-            <button
-              onClick={() => setTab("code")}
-              className={`px-4 py-2 rounded transition-colors ${
-                tab === "code" 
-                  ? "bg-blue-600 text-white" 
-                  : "bg-gray-200 hover:bg-gray-300"
-              }`}
-            >
-              Code
-            </button>
-            <button
-              onClick={handleExport}
-              className="ml-auto px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
-            >
-              Export
-            </button>
-          </div>
-
-          {/* Preview Tab */}
-          {tab === "preview" && (
-            <iframe 
-              srcDoc={generateFullHtml()}
-              sandbox="allow-scripts"
-              className="w-full h-[500px] border rounded shadow-sm"
-            />
-          )}
-
-          {/* Code Tab */}
-          {tab === "code" && (
-            <pre className="bg-gray-800 text-white p-4 rounded overflow-x-auto text-sm shadow-sm">
-              <code>{generateFullHtml()}</code>
-            </pre>
-          )}
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="Describe your website..."
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full border rounded p-3 text-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+          />
         </div>
-      )}
+
+        {/* Generate Button */}
+        <button
+          onClick={generateSite}
+          disabled={loading || !description}
+          className="w-full py-3 bg-orange-600 text-white rounded text-lg font-semibold disabled:opacity-50 hover:bg-orange-700 transition-colors"
+        >
+          {loading ? "Generating..." : "Generate Website"}
+        </button>
+
+        {/* Results Section */}
+        {components && (
+          <div className="mt-10">
+            {/* Tab Navigation */}
+            <div className="flex gap-2 mb-4">
+              <button
+                onClick={() => setTab("preview")}
+                className={`px-4 py-2 rounded transition-colors ${
+                  tab === "preview"
+                    ? "bg-orange-600 text-white"
+                    : "bg-gray-200 hover:bg-gray-300"
+                }`}
+              >
+                Preview
+              </button>
+              <button
+                onClick={() => setTab("code")}
+                className={`px-4 py-2 rounded transition-colors ${
+                  tab === "code"
+                    ? "bg-orange-600 text-white"
+                    : "bg-gray-200 hover:bg-gray-300"
+                }`}
+              >
+                Code
+              </button>
+              <button
+                onClick={handleExport}
+                className="ml-auto px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+              >
+                Export
+              </button>
+            </div>
+
+            {/* Preview Tab */}
+            {tab === "preview" && (
+              <iframe
+                srcDoc={generateFullHtml()}
+                sandbox="allow-scripts"
+                className="w-full h-[500px] border rounded-2xl shadow-xl"
+              />
+            )}
+
+            {/* Code Tab */}
+            {tab === "code" && (
+              <pre className="bg-gray-800 text-white p-4 rounded overflow-x-auto text-sm shadow-xl">
+                <code>{generateFullHtml()}</code>
+              </pre>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
+
+// an elegant portfolio site of software engineer
